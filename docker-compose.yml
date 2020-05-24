@@ -39,14 +39,16 @@ services:
       context: ./client
     volumes:
       - /app/node_modules
-      - ./client:/app
+      - //h/dockers/complex/client/:/app
   worker:
+    depends_on:
+      - postgres
     build:
       dockerfile: Dockerfile.dev
       context: ./worker
     volumes:
       - /app/node_modules
-      - ./worker:/app
+      - ./worker/:/app
     environment:
       - REDIS_HOST=redis
       - REDIS_PORT=6379
