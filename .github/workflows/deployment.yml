@@ -30,8 +30,8 @@ jobs:
         
         - name: docker push
           run: |
-            docker push narteysarso/multi-client ./client
-            docker push narteysarso/multi-nginx ./nginx
-            docker push narteysarso/multi-server ./server
-            docker push narteysarso/multi-worker ./worker
+            docker push narteysarso/multi-client
+            docker push narteysarso/multi-nginx
+            docker push narteysarso/multi-server
+            docker push narteysarso/multi-worker
 
