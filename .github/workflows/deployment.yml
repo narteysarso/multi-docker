@@ -18,7 +18,7 @@ jobs:
         
         - name: build test image
           run: |
-            docker build -t narteysarso/react-test -f ./Dockerfile.dev ./client
+            docker build -t narteysarso/react-test -f ./client/Dockerfile.dev ./client
         - name: test built image
           run : docker run narteysarso/react-test npm run test --watchAll=false
 
