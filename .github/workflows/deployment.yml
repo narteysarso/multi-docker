@@ -16,9 +16,22 @@ jobs:
             DOCKER_ID: ${{ secrets.DOCKER_ID }}
             DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         
-        - name: build test image
+        # - name: build test image
+        #   run: |
+        #     docker build -t narteysarso/react-test -f ./client/Dockerfile.dev ./client
+        # - name: test built image
+        #   run : docker run narteysarso/react-test npm run test --watchAll=false
+        - name: build images
           run: |
-            docker build -t narteysarso/react-test -f ./client/Dockerfile.dev ./client
-        - name: test built image
-          run : docker run narteysarso/react-test npm run test --watchAll=false
+            docker build -t narteysarso/multi-client ./client
+            docker build -t narteysarso/multi-nginx ./nginx
+            docker build -t narteysarso/multi-server ./server
+            docker build -t narteysarso/multi-worker ./worker
+        
+        - name: docker push
+          run: |
+            docker push narteysarso/multi-client ./client
+            docker push narteysarso/multi-nginx ./nginx
+            docker push narteysarso/multi-server ./server
+            docker push narteysarso/multi-worker ./worker
 
