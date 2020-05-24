@@ -9,15 +9,15 @@ before_install:
 scripts:
   - docker run narteysarso/react-test npm test --watchAll=false
 
-# after_success:
-#   - docker build -t narteysarso/multi-client ./client
-#   - docker build -t narteysarso/multi-nginx ./nginx
-#   - docker build -t narteysarso/multi-server ./server
-#   - docker build -t narteysarso/multi-worker ./worker
-#   # Login to hub.docker.com and push docker images
-#   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-#   # 
-#   - docker push narteysarso/multi-client ./client
-#   - docker push narteysarso/multi-nginx ./nginx
-#   - docker push narteysarso/multi-server ./server
-#   - docker push narteysarso/multi-worker ./worker
+after_success:
+  - docker build -t narteysarso/multi-client ./client
+  - docker build -t narteysarso/multi-nginx ./nginx
+  - docker build -t narteysarso/multi-server ./server
+  - docker build -t narteysarso/multi-worker ./worker
+  # Login to hub.docker.com and push docker images
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # 
+  - docker push narteysarso/multi-client ./client
+  - docker push narteysarso/multi-nginx ./nginx
+  - docker push narteysarso/multi-server ./server
+  - docker push narteysarso/multi-worker ./worker
